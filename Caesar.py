@@ -1,15 +1,7 @@
-# function to decode message
-def decoded(message, offset):
-    alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-    punctuation = "()~@#$%^&*-_+=/\"\<>.,?!:' "
-    word_decoded = ""
-    for letter in message:
-        if not letter in punctuation:
-             letter_index = alphabet.find(letter)
-             word_decoded += alphabet[(letter_index + offset) % len(alphabet)] 
-        else:
-             word_decoded += letter
-    return word_decoded
+# principle:
+# if you want to decode, shift forwards
+# if you want to encode, shift backwards
+
 # function to encode message
 def encoded(message, offset):
     alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -25,13 +17,27 @@ def encoded(message, offset):
     return word_encoded
 
 
-# message to encode
-message1 = "Hello guys! My name is Liam. If you need me, call my phone number: 0123456789"
+# function to decode message
+def decoded(message, offset):
+    alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    punctuation = "()~@#$%^&*-_+=/\"\<>.,?!:' "
+    word_decoded = ""
+    for letter in message:
+        if not letter in punctuation:
+             letter_index = alphabet.find(letter)
+             word_decoded += alphabet[(letter_index + offset) % len(alphabet)] 
+        else:
+             word_decoded += letter
+    return word_decoded
+
+
+# message and offset to encode
+message1 = "Hello guys! My name is Liam. If you need me, call my phone number: 0755XXXXXXX"
 offset = 10
-print(encoded(message1, offset))
+print("Encoded message\n" + encoded(message1, offset))
 # message to decode
 message2 = encoded(message1, offset)
-print(decoded(message2, offset))
+print("Decoded message\n" + decoded(message2, offset))
 
 
 
